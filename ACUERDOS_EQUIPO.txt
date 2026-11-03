@@ -1,0 +1,27 @@
+ACUERDO INICIAL PROPUESTO PARA REVISAR JUNTOS
+
+Repositorio: https://github.com/jimevtr/huellitas_match
+Lenguaje: Dart. Framework: Flutter. Estado compartido: Provider.
+Primera etapa con datos locales, sin Firebase ni inicio de sesión.
+
+Datos que deben acordar antes de trabajar separados:
+id: identificador único de la mascota, que no cambia.
+nombre, especie, edad, tamaño, rutaImagen, descripcion.
+nivelActividad, espacio y tiempoCuidados: categorías compartidas con la encuesta.
+No escribir reglas de coincidencia hasta acordar qué significa cada categoría.
+
+Santiago: ficha y datos locales, repositorio, tarjeta, catálogo y detalle.
+Jimena: bienvenida, encuesta, sugerencias, favoritos y Provider, tema y botón.
+Ambos: revisar conexiones, imágenes y prueba del recorrido completo.
+
+Solo una persona modifica main.dart y pubspec.yaml durante la integración.
+No sobrescribir cambios de la compañera. Integrar avances pequeños.
+Primero preparar y subir juntos la base Flutter; después cada uno trabaja en su rama.
+
+Secuencia de prueba:
+Bienvenida -> encuesta -> catálogo -> detalle -> favoritos.
+Cambiar respuestas debe afectar las sugerencias.
+Agregar y quitar favoritos debe reflejarse al navegar.
+
+El script preparar.ps1 genera únicamente la plantilla oficial de Flutter y agrega Provider.
+Las pantallas y funciones del proyecto deben implementarse por el equipo.
