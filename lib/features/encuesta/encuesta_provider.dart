@@ -5,7 +5,7 @@ class EncuestaProvider with ChangeNotifier {
   String? _tiempoCuidados;  
   String? _actividad;       
   String? _experiencia;     
-  String? _tamanoPreferido; // Cambiado para evitar que se parezca al espacio
+  String? _tamanoPreferido; 
 
   String? get espacio => _espacio;
   String? get tiempoCuidados => _tiempoCuidados;

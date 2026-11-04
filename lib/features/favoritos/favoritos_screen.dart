@@ -5,7 +5,7 @@ import 'favoritos_provider.dart';
 class FavoritosScreen extends StatelessWidget {
   final List<dynamic> todasLasMascotas;
 
-  const FavoritosScreen({Key? key, required this.todasLasMascotas}) : super(key: key);
+  const FavoritosScreen({super.key, required this.todasLasMascotas});
 
   @override
   Widget build(BuildContext context) {

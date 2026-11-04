@@ -3,7 +3,7 @@ import '../../core/widgets/boton_principal.dart';
 import '../encuesta/encuesta_screen.dart';
 
 class BienvenidaScreen extends StatelessWidget {
-  const BienvenidaScreen({Key? key}) : super(key: key);
+  const BienvenidaScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

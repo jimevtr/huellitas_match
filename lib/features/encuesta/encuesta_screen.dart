@@ -4,7 +4,7 @@ import '../../core/widgets/boton_principal.dart';
 import 'encuesta_provider.dart';
 
 class EncuestaScreen extends StatelessWidget {
-  const EncuestaScreen({Key? key}) : super(key: key);
+  const EncuestaScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
