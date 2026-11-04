@@ -8,6 +8,7 @@ class MascotaRepository {
 const mascotasDemo = [
   Mascota(
     id: 'demo-luna',
+    experiencia: 'ninguna',
     nombre: 'Luna',
     especie: 'Perro',
     edad: 3,
@@ -20,6 +21,7 @@ const mascotasDemo = [
   ),
   Mascota(
     id: 'demo-milo',
+    experiencia: 'basica',
     nombre: 'Milo',
     especie: 'Gato',
     edad: 2,
@@ -32,6 +34,7 @@ const mascotasDemo = [
   ),
   Mascota(
     id: 'demo-nala',
+    experiencia: 'mucha',
     nombre: 'Nala',
     especie: 'Gato',
     edad: 6,
@@ -44,6 +47,7 @@ const mascotasDemo = [
   ),
   Mascota(
     id: 'demo-kira',
+    experiencia: 'basica',
     nombre: 'Kira',
     especie: 'Perro',
     edad: 1,
@@ -56,6 +60,7 @@ const mascotasDemo = [
   ),
   Mascota(
     id: 'demo-bruno',
+    experiencia: 'ninguna',
     nombre: 'Bruno',
     especie: 'Perro',
     edad: 7,
@@ -68,6 +73,7 @@ const mascotasDemo = [
   ),
   Mascota(
     id: 'demo-max',
+    experiencia: 'basica',
     nombre: 'Max',
     especie: 'Perro',
     edad: 3,
@@ -80,6 +86,7 @@ const mascotasDemo = [
   ),
   Mascota(
     id: 'demo-coco',
+    experiencia: 'mucha',
     nombre: 'Coco',
     especie: 'Gato',
     edad: 5,
@@ -92,6 +99,7 @@ const mascotasDemo = [
   ),
   Mascota(
     id: 'demo-rocky',
+    experiencia: 'mucha',
     nombre: 'Rocky',
     especie: 'Perro',
     edad: 2,

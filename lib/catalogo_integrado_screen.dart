@@ -24,6 +24,10 @@ class CatalogoIntegradoScreen extends StatelessWidget {
       getEspacio: (m) => m.espacio,
       getTiempo: (m) => m.tiempoCuidados,
       getActividad: (m) => m.actividad,
+      experienciaUsuario: encuesta.experiencia,
+      tamanoUsuario: encuesta.tamanoPreferido,
+      getExperiencia: (m) => m.experiencia,
+      getTamano: (m) => m.tamano,
     );
     final motivos = <String, String>{};
     if (encuesta.encuestaCompleta) {
@@ -43,6 +47,18 @@ class CatalogoIntegradoScreen extends StatelessWidget {
           encuesta.actividad,
         )) {
           coincidencias.add('actividad');
+        }
+        if (SugerenciasService.coincide(
+          mascota.experiencia,
+          encuesta.experiencia,
+        )) {
+          coincidencias.add('experiencia previa');
+        }
+        if (SugerenciasService.coincide(
+          mascota.tamano,
+          encuesta.tamanoPreferido,
+        )) {
+          coincidencias.add('tamaño preferido');
         }
         if (coincidencias.isNotEmpty) {
           motivos[mascota.id] =

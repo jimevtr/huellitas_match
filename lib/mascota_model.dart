@@ -9,6 +9,7 @@ class Mascota {
   final String actividad;
   final String espacio;
   final String tiempoCuidados;
+  final String experiencia;
 
   const Mascota({
     required this.id,
@@ -21,5 +22,6 @@ class Mascota {
     required this.actividad,
     required this.espacio,
     required this.tiempoCuidados,
+    this.experiencia = 'basica',
   });
 }

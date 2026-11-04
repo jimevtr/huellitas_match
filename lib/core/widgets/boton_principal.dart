@@ -6,11 +6,11 @@ class BotonPrincipal extends StatelessWidget {
   final IconData? icono;
 
   const BotonPrincipal({
-    Key? key,
+    super.key,
     required this.texto,
     required this.onPressed,
     this.icono,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

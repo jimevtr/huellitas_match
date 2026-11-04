@@ -16,6 +16,13 @@ void main() {
     await tester.pumpAndSettle();
 
     Future<void> pulsar(String texto) async {
+      if (find.text(texto).evaluate().isEmpty) {
+        await tester.scrollUntilVisible(
+          find.text(texto),
+          180,
+          scrollable: find.byType(Scrollable).last,
+        );
+      }
       final objetivo = find.text(texto).last;
       await tester.ensureVisible(objetivo);
       await tester.pumpAndSettle();
@@ -27,12 +34,18 @@ void main() {
     await pulsar('Ver sugerencias');
     expect(find.byType(EncuestaScreen), findsOneWidget);
     expect(
-      find.text('Por favor responde todas las preguntas para continuar.'),
+      find.text('Por favor responde las 5 preguntas para continuar.'),
       findsOneWidget,
     );
-    await pulsar('Pequeño');
+    await tester.ensureVisible(find.text('Pequeño').first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Pequeño').first);
+    await tester.pumpAndSettle();
     await pulsar('Moderado');
     await pulsar('Activa');
+    await pulsar('Básica');
+    // Pequeño aparece en espacio y en tamaño; pulsar usa la última opción.
+    await pulsar('Pequeño');
     await pulsar('Ver sugerencias');
     expect(find.text('Tu próximo match'), findsOneWidget);
     expect(
