@@ -22,7 +22,7 @@ class EncuestaScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Center(
               child: Text(
-                encuestaProvider.encuestaCompleta ? '3/3' : '1/3',
+                encuestaProvider.encuestaCompleta ? '5/5' : '1/5',
                 style: const TextStyle(
                   color: Color(0xFFD35400),
                   fontWeight: FontWeight.bold,
@@ -54,16 +54,15 @@ class EncuestaScreen extends StatelessWidget {
             const Divider(),
             const SizedBox(height: 16),
 
-            // Pregunta 1: Espacio
             _buildQuestionTitle('01', '¿Cuánto espacio tienes?'),
             const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
                   child: _buildOptionButton(
-                    titulo: 'Pequeño',
-                    seleccionado: encuestaProvider.espacio == 'pequeño',
-                    onTap: () => encuestaProvider.setEspacio('pequeño'),
+                    titulo: 'Pequeno',
+                    seleccionado: encuestaProvider.espacio == 'pequeno',
+                    onTap: () => encuestaProvider.setEspacio('pequeno'),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -78,7 +77,6 @@ class EncuestaScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Pregunta 2: Tiempo para cuidados
             _buildQuestionTitle('02', '¿Tiempo para cuidados?'),
             const SizedBox(height: 12),
             Row(
@@ -102,7 +100,6 @@ class EncuestaScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Pregunta 3: Nivel de actividad
             _buildQuestionTitle('03', '¿Tu nivel de actividad?'),
             const SizedBox(height: 12),
             Row(
@@ -124,9 +121,54 @@ class EncuestaScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 24),
+
+            _buildQuestionTitle('04', '¿Tienes experiencia previa?'),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildOptionButton(
+                    titulo: 'Primeriza',
+                    seleccionado: encuestaProvider.experiencia == 'primeriza',
+                    onTap: () => encuestaProvider.setExperiencia('primeriza'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildOptionButton(
+                    titulo: 'Experta',
+                    seleccionado: encuestaProvider.experiencia == 'experta',
+                    onTap: () => encuestaProvider.setExperiencia('experta'),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            _buildQuestionTitle('05', '¿Tipo de vivienda?'),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildOptionButton(
+                    titulo: 'Departamento',
+                    seleccionado: encuestaProvider.tipoHogar == 'departamento',
+                    onTap: () => encuestaProvider.setTipoHogar('departamento'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildOptionButton(
+                    titulo: 'Casa con patio',
+                    seleccionado: encuestaProvider.tipoHogar == 'casa',
+                    onTap: () => encuestaProvider.setTipoHogar('casa'),
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 40),
 
-            // Botón Ver sugerencias con validación
             BotonPrincipal(
               texto: 'Ver sugerencias',
               icono: Icons.arrow_forward,
@@ -134,14 +176,13 @@ class EncuestaScreen extends StatelessWidget {
                 if (!encuestaProvider.encuestaCompleta) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Por favor responde todas las preguntas para continuar.'),
+                      content: Text('Por favor responde las 5 preguntas para continuar.'),
                       backgroundColor: Colors.redAccent,
                     ),
                   );
                   return;
                 }
-                // Navegar al catálogo / sugerencias (integrado con Santiago)
-                // Navigator.pushNamed(context, '/catalogo');
+
               },
             ),
             const SizedBox(height: 16),
