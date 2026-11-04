@@ -1,4 +1,4 @@
-import 'mascota_model.dart';
+import 'package:huellitas_match/models/mascota_model.dart';
 
 class MascotaRepository {
   List<Mascota> obtenerMascotas() => List.of(mascotasDemo);

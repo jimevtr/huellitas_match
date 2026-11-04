@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/boton_principal.dart';
-import '../encuesta/encuesta_screen.dart';
+import 'package:huellitas_match/core/widgets/boton_principal.dart';
+import 'package:huellitas_match/features/encuesta/encuesta_screen.dart';
 
 class BienvenidaScreen extends StatelessWidget {
   const BienvenidaScreen({super.key});

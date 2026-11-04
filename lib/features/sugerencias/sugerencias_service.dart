@@ -1,3 +1,5 @@
+import 'package:huellitas_match/models/mascota_model.dart';
+
 // Reglas sencillas para ordenar sugerencias comparando respuestas con mascotas.
 // Sin porcentajes inventados.
 
@@ -16,6 +18,43 @@ class SugerenciasService {
       respuesta != null &&
       normalizar(valor == 'alto' ? 'suficiente' : valor) ==
           normalizar(respuesta == 'alto' ? 'suficiente' : respuesta);
+  static Map<String, String> obtenerMotivos({
+    required List<Mascota> mascotas,
+    String? espacio,
+    String? tiempo,
+    String? actividad,
+    String? experiencia,
+    String? tamano,
+  }) {
+    if ([
+      espacio,
+      tiempo,
+      actividad,
+      experiencia,
+      tamano,
+    ].any((r) => r == null)) {
+      return {};
+    }
+    final motivos = <String, String>{};
+    for (final mascota in mascotas) {
+      final criterios = {
+        'espacio': coincide(mascota.espacio, espacio),
+        'tiempo de cuidados': coincide(mascota.tiempoCuidados, tiempo),
+        'actividad': coincide(mascota.actividad, actividad),
+        'experiencia previa': coincide(mascota.experiencia, experiencia),
+        'tamaño preferido': coincide(mascota.tamano, tamano),
+      };
+      final coincidencias = criterios.entries
+          .where((c) => c.value)
+          .map((c) => c.key);
+      if (coincidencias.isNotEmpty) {
+        motivos[mascota.id] =
+            'Coincide con tus respuestas sobre ${coincidencias.join(', ')}. Es una orientación inicial, no una garantía de compatibilidad.';
+      }
+    }
+    return motivos;
+  }
+
   static List<T> ordenarSugerencias<T>({
     required List<T> mascotas,
     required String? espacioUsuario,

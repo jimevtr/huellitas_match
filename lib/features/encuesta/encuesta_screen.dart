@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/widgets/boton_principal.dart';
-import 'encuesta_provider.dart';
+import 'package:huellitas_match/core/widgets/boton_principal.dart';
+import 'package:huellitas_match/features/encuesta/encuesta_provider.dart';
 
 class EncuestaScreen extends StatelessWidget {
   final bool volverAlCatalogo;

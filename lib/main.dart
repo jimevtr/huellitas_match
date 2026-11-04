@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'features/bienvenida/bienvenida_screen.dart';
-import 'features/encuesta/encuesta_provider.dart';
-import 'features/favoritos/favoritos_provider.dart';
-import 'catalogo_integrado_screen.dart';
-import 'catalogo_theme.dart';
+import 'package:huellitas_match/features/bienvenida/bienvenida_screen.dart';
+import 'package:huellitas_match/features/encuesta/encuesta_provider.dart';
+import 'package:huellitas_match/features/favoritos/favoritos_provider.dart';
+import 'package:huellitas_match/features/catalogo/catalogo_integrado_screen.dart';
+import 'package:huellitas_match/core/theme/catalogo_theme.dart';
 
 void main() {
   runApp(const MyApp());

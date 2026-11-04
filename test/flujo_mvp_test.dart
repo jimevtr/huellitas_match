@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:huellitas_match/main.dart';
-import 'package:huellitas_match/mascota_card.dart';
+import 'package:huellitas_match/features/catalogo/widgets/mascota_card.dart';
 import 'package:huellitas_match/features/encuesta/encuesta_screen.dart';
 
 void main() {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../mascota_model.dart';
-import 'favoritos_provider.dart';
+import 'package:huellitas_match/models/mascota_model.dart';
+
+import 'package:huellitas_match/features/favoritos/favoritos_provider.dart';
 
 class BotonFavorito extends StatelessWidget {
   final Mascota mascota;

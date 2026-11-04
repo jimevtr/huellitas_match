@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'favoritos_provider.dart';
-import '../../../mascota_model.dart';
-import '../../../mascota_details_screen.dart';
-import 'boton_favorito.dart';
+import 'package:huellitas_match/features/favoritos/favoritos_provider.dart';
+
+import 'package:huellitas_match/models/mascota_model.dart';
+import 'package:huellitas_match/features/detalle/mascota_details_screen.dart';
+
+import 'package:huellitas_match/features/favoritos/boton_favorito.dart';
 
 class FavoritosScreen extends StatelessWidget {
   final List<Mascota> todasLasMascotas;
 
-  const FavoritosScreen({Key? key, required this.todasLasMascotas})
-    : super(key: key);
+  const FavoritosScreen({super.key, required this.todasLasMascotas});
 
   @override
   Widget build(BuildContext context) {

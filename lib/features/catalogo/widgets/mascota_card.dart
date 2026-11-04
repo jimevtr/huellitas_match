@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'catalogo_theme.dart';
-import 'mascota_model.dart';
+import 'package:huellitas_match/core/theme/catalogo_theme.dart';
+import 'package:huellitas_match/models/mascota_model.dart';
 
 class MascotaCard extends StatelessWidget {
   final Mascota mascota;
@@ -68,7 +68,7 @@ class MascotaCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (accionFavorito != null) accionFavorito!,
+                        ?accionFavorito,
                       ],
                     ),
                     const SizedBox(height: 5),

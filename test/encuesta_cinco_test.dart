@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:huellitas_match/mascota_repository.dart';
+import 'package:huellitas_match/repositories/mascota_repository.dart';
 import 'package:huellitas_match/features/sugerencias/sugerencias_service.dart';
 import 'package:huellitas_match/features/encuesta/encuesta_provider.dart';
 

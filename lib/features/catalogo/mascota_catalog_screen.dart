@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'mascota_card.dart';
-import 'mascota_details_screen.dart';
-import 'mascota_model.dart';
-import 'mascota_repository.dart';
-import 'catalogo_theme.dart';
+import 'package:huellitas_match/features/catalogo/widgets/mascota_card.dart';
+import 'package:huellitas_match/features/detalle/mascota_details_screen.dart';
+import 'package:huellitas_match/models/mascota_model.dart';
+import 'package:huellitas_match/repositories/mascota_repository.dart';
+import 'package:huellitas_match/core/theme/catalogo_theme.dart';
 
 class MascotaCatalogScreen extends StatefulWidget {
   final VoidCallback? abrirEncuesta;
