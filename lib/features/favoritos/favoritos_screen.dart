@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'favoritos_provider.dart';
+import '../../../mascota_model.dart';
+import '../../../mascota_details_screen.dart';
+import 'boton_favorito.dart';
 
 class FavoritosScreen extends StatelessWidget {
-  final List<dynamic> todasLasMascotas;
+  final List<Mascota> todasLasMascotas;
 
-  const FavoritosScreen({Key? key, required this.todasLasMascotas}) : super(key: key);
+  const FavoritosScreen({Key? key, required this.todasLasMascotas})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final favoritosProvider = Provider.of<FavoritosProvider>(context);
-    
+
     final mascotasFavoritas = todasLasMascotas.where((mascota) {
       return favoritosProvider.esFavorito(mascota.id);
     }).toList();
@@ -39,7 +44,7 @@ class FavoritosScreen extends StatelessWidget {
                       child: const Icon(
                         Icons.favorite_border,
                         size: 48,
-                        color: Color(0xFFD35400),
+                        color: Color(0xFFBF573F),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -60,8 +65,11 @@ class FavoritosScreen extends StatelessWidget {
                     const SizedBox(height: 24),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFD35400),
-                        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+                        backgroundColor: const Color(0xFFBF573F),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 14,
+                          horizontal: 24,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -69,7 +77,10 @@ class FavoritosScreen extends StatelessWidget {
                       onPressed: () => Navigator.pop(context),
                       child: const Text(
                         'Volver al catálogo',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -98,12 +109,16 @@ class FavoritosScreen extends StatelessWidget {
                             width: 80,
                             height: 80,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) => Container(
-                              width: 80,
-                              height: 80,
-                              color: Colors.grey.shade200,
-                              child: const Icon(Icons.pets, color: Colors.grey),
-                            ),
+                            errorBuilder: (context, error, stackTrace) =>
+                                Container(
+                                  width: 80,
+                                  height: 80,
+                                  color: Colors.grey.shade200,
+                                  child: const Icon(
+                                    Icons.pets,
+                                    color: Colors.grey,
+                                  ),
+                                ),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -127,35 +142,48 @@ class FavoritosScreen extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              Row(
+                              Wrap(
+                                spacing: 12,
                                 children: [
                                   TextButton(
                                     style: TextButton.styleFrom(
                                       padding: EdgeInsets.zero,
                                       minimumSize: const Size(50, 30),
-                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                      tapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
                                     ),
                                     onPressed: () {
-                                      // Navegar al detalle (Santiago conecta esta parte)
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute<void>(
+                                          builder: (_) => MascotaDetailsScreen(
+                                            mascota: mascota,
+                                            construirFavorito: (m) =>
+                                                BotonFavorito(mascota: m),
+                                          ),
+                                        ),
+                                      );
                                     },
                                     child: const Text(
                                       'Ver detalle →',
                                       style: TextStyle(
-                                        color: Color(0xFFD35400),
+                                        color: Color(0xFFBF573F),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 13,
                                       ),
                                     ),
                                   ),
-                                  const Spacer(),
                                   TextButton(
                                     style: TextButton.styleFrom(
                                       padding: EdgeInsets.zero,
                                       minimumSize: const Size(50, 30),
-                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                      tapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
                                     ),
                                     onPressed: () {
-                                      favoritosProvider.quitarFavorito(mascota.id);
+                                      favoritosProvider.quitarFavorito(
+                                        mascota.id,
+                                      );
                                     },
                                     child: const Text(
                                       'Quitar favorito',

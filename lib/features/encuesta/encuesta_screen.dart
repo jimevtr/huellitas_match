@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../core/widgets/boton_principal.dart';
 import 'encuesta_provider.dart';
 
 class EncuestaScreen extends StatelessWidget {
-  const EncuestaScreen({Key? key}) : super(key: key);
+  final bool volverAlCatalogo;
+  const EncuestaScreen({super.key, this.volverAlCatalogo = false});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,9 @@ class EncuestaScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Center(
               child: Text(
-                encuestaProvider.encuestaCompleta ? '3/3' : '1/3',
+                '${[encuestaProvider.espacio, encuestaProvider.tiempoCuidados, encuestaProvider.actividad].where((r) => r != null).length}/3',
                 style: const TextStyle(
-                  color: Color(0xFFD35400),
+                  color: Color(0xFFBF573F),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -134,14 +136,19 @@ class EncuestaScreen extends StatelessWidget {
                 if (!encuestaProvider.encuestaCompleta) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Por favor responde todas las preguntas para continuar.'),
+                      content: Text(
+                        'Por favor responde todas las preguntas para continuar.',
+                      ),
                       backgroundColor: Colors.redAccent,
                     ),
                   );
                   return;
                 }
-                // Navegar al catálogo / sugerencias (integrado con Santiago)
-                // Navigator.pushNamed(context, '/catalogo');
+                if (volverAlCatalogo) {
+                  Navigator.pop(context);
+                } else {
+                  Navigator.pushReplacementNamed(context, '/catalogo');
+                }
               },
             ),
             const SizedBox(height: 16),
@@ -163,7 +170,7 @@ class EncuestaScreen extends StatelessWidget {
         Text(
           numero,
           style: const TextStyle(
-            color: Color(0xFFD35400),
+            color: Color(0xFFBF573F),
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
@@ -191,9 +198,11 @@ class EncuestaScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         decoration: BoxDecoration(
-          color: seleccionado ? const Color(0xFFFCE4EC) : Colors.white,
+          color: seleccionado ? const Color(0xFFF7E9E0) : Colors.white,
           border: Border.all(
-            color: seleccionado ? const Color(0xFFD35400) : Colors.grey.shade300,
+            color: seleccionado
+                ? const Color(0xFFBF573F)
+                : Colors.grey.shade300,
             width: seleccionado ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
@@ -202,7 +211,7 @@ class EncuestaScreen extends StatelessWidget {
           child: Text(
             titulo,
             style: TextStyle(
-              color: seleccionado ? const Color(0xFFD35400) : Colors.black87,
+              color: seleccionado ? const Color(0xFFBF573F) : Colors.black87,
               fontWeight: FontWeight.bold,
               fontSize: 14,
             ),

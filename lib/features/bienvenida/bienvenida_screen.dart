@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/widgets/boton_principal.dart';
 import '../encuesta/encuesta_screen.dart';
 
@@ -19,10 +20,14 @@ class BienvenidaScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFCE4EC),
+                      color: const Color(0xFFF7E9E0),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(Icons.pets, color: Color(0xFFD35400), size: 20),
+                    child: const Icon(
+                      Icons.pets,
+                      color: Color(0xFFBF573F),
+                      size: 20,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   const Text(
@@ -62,7 +67,10 @@ class BienvenidaScreen extends StatelessWidget {
                       bottom: 16,
                       left: 16,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -70,7 +78,11 @@ class BienvenidaScreen extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: const [
-                            Icon(Icons.favorite, color: Color(0xFFD35400), size: 16),
+                            Icon(
+                              Icons.favorite,
+                              color: Color(0xFFBF573F),
+                              size: 16,
+                            ),
                             SizedBox(width: 6),
                             Text(
                               'Tu próximo mejor amigo',
@@ -99,10 +111,7 @@ class BienvenidaScreen extends StatelessWidget {
               const SizedBox(height: 8),
               const Text(
                 'Conecta con su historia. Empieza la tuya.',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               const SizedBox(height: 32),
               BotonPrincipal(
@@ -111,7 +120,9 @@ class BienvenidaScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const EncuestaScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => const EncuestaScreen(),
+                    ),
                   );
                 },
               ),
@@ -119,12 +130,12 @@ class BienvenidaScreen extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Ruta hacia el catálogo (integrado por Santiago)
+                    Navigator.pushNamed(context, '/catalogo');
                   },
                   child: const Text(
                     'Explorar catálogo',
                     style: TextStyle(
-                      color: Color(0xFFD35400),
+                      color: Color(0xFFBF573F),
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),

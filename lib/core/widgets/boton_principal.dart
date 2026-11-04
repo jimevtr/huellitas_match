@@ -26,7 +26,9 @@ class BotonPrincipal extends StatelessWidget {
           elevation: 2,
         ),
         onPressed: onPressed,
-        icon: icono != null ? Icon(icono, color: Colors.white) : const SizedBox.shrink(),
+        icon: icono != null
+            ? Icon(icono, color: Colors.white)
+            : const SizedBox.shrink(),
         label: Text(
           texto,
           style: const TextStyle(

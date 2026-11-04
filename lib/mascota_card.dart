@@ -6,7 +6,13 @@ import 'mascota_model.dart';
 class MascotaCard extends StatelessWidget {
   final Mascota mascota;
   final VoidCallback onTap;
-  const MascotaCard({super.key, required this.mascota, required this.onTap});
+  final Widget? accionFavorito;
+  const MascotaCard({
+    super.key,
+    required this.mascota,
+    required this.onTap,
+    this.accionFavorito,
+  });
   @override
   Widget build(BuildContext context) => Container(
     margin: const EdgeInsets.only(bottom: 16),
@@ -50,13 +56,20 @@ class MascotaCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      mascota.nombre,
-                      style: const TextStyle(
-                        fontSize: 21,
-                        fontWeight: FontWeight.w700,
-                        color: CatalogoColors.texto,
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            mascota.nombre,
+                            style: const TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.w700,
+                              color: CatalogoColors.texto,
+                            ),
+                          ),
+                        ),
+                        if (accionFavorito != null) accionFavorito!,
+                      ],
                     ),
                     const SizedBox(height: 5),
                     Text(

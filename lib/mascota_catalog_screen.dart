@@ -11,6 +11,8 @@ class MascotaCatalogScreen extends StatefulWidget {
   final VoidCallback? abrirFavoritos;
   final Widget Function(Mascota mascota)? construirFavorito;
   final Map<String, String> sugerencias;
+  final List<Mascota>? mascotasOrdenadas;
+  final Widget Function(Mascota mascota)? construirCorazon;
 
   const MascotaCatalogScreen({
     super.key,
@@ -18,6 +20,8 @@ class MascotaCatalogScreen extends StatefulWidget {
     this.abrirFavoritos,
     this.construirFavorito,
     this.sugerencias = const {},
+    this.mascotasOrdenadas,
+    this.construirCorazon,
   });
 
   @override
@@ -31,7 +35,7 @@ class _MascotaCatalogScreenState extends State<MascotaCatalogScreen> {
   String busqueda = '';
 
   List<Mascota> get mascotasFiltradas {
-    final resultado = mascotas.where((mascota) {
+    final resultado = (widget.mascotasOrdenadas ?? mascotas).where((mascota) {
       final coincideEspecie = especie == 'Todos' || mascota.especie == especie;
       final coincideNombre = mascota.nombre.toLowerCase().contains(
         busqueda.trim().toLowerCase(),
@@ -176,6 +180,9 @@ class _MascotaCatalogScreenState extends State<MascotaCatalogScreen> {
                           final mascota = lista[index];
                           return MascotaCard(
                             mascota: mascota,
+                            accionFavorito: widget.construirCorazon?.call(
+                              mascota,
+                            ),
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute<void>(

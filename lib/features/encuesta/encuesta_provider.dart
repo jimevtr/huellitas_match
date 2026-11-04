@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 
 class EncuestaProvider with ChangeNotifier {
-  String? _espacio;         // 'pequeño' / 'amplio'
-  String? _tiempoCuidados;  // 'moderado' / 'alto'
-  String? _actividad;       // 'tranquila' / 'activa'
+  String? _espacio; // 'pequeño' / 'amplio'
+  String? _tiempoCuidados; // 'moderado' / 'alto'
+  String? _actividad; // 'tranquila' / 'activa'
 
   String? get espacio => _espacio;
   String? get tiempoCuidados => _tiempoCuidados;

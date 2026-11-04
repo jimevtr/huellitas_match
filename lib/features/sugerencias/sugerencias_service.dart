@@ -2,6 +2,11 @@
 // Sin porcentajes inventados.
 
 class SugerenciasService {
+  static String normalizar(String valor) =>
+      valor.trim().toLowerCase().replaceAll('ñ', 'n');
+
+  static bool coincide(String valor, String? respuesta) =>
+      respuesta != null && normalizar(valor) == normalizar(respuesta);
   static List<T> ordenarSugerencias<T>({
     required List<T> mascotas,
     required String? espacioUsuario,
@@ -11,7 +16,9 @@ class SugerenciasService {
     required String Function(T mascota) getTiempo,
     required String Function(T mascota) getActividad,
   }) {
-    if (espacioUsuario == null || tiempoUsuario == null || actividadUsuario == null) {
+    if (espacioUsuario == null ||
+        tiempoUsuario == null ||
+        actividadUsuario == null) {
       return mascotas;
     }
 
@@ -21,15 +28,18 @@ class SugerenciasService {
       int scoreA = 0;
       int scoreB = 0;
 
-      if (getEspacio(a).toLowerCase() == espacioUsuario.toLowerCase()) scoreA++;
-      if (getTiempo(a).toLowerCase() == tiempoUsuario.toLowerCase()) scoreA++;
-      if (getActividad(a).toLowerCase() == actividadUsuario.toLowerCase()) scoreA++;
+      if (coincide(getEspacio(a), espacioUsuario)) scoreA++;
+      if (coincide(getTiempo(a), tiempoUsuario)) scoreA++;
+      if (coincide(getActividad(a), actividadUsuario)) scoreA++;
 
-      if (getEspacio(b).toLowerCase() == espacioUsuario.toLowerCase()) scoreB++;
-      if (getTiempo(b).toLowerCase() == tiempoUsuario.toLowerCase()) scoreB++;
-      if (getActividad(b).toLowerCase() == actividadUsuario.toLowerCase()) scoreB++;
+      if (coincide(getEspacio(b), espacioUsuario)) scoreB++;
+      if (coincide(getTiempo(b), tiempoUsuario)) scoreB++;
+      if (coincide(getActividad(b), actividadUsuario)) scoreB++;
 
-      return scoreB.compareTo(scoreA); // Mayor coincidencia al inicio
+      final resultado = scoreB.compareTo(scoreA);
+      return resultado != 0
+          ? resultado
+          : mascotas.indexOf(a).compareTo(mascotas.indexOf(b));
     });
 
     return listaOrdenada;
