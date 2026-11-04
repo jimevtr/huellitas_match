@@ -4,6 +4,7 @@ import 'mascota_card.dart';
 import 'mascota_details_screen.dart';
 import 'mascota_model.dart';
 import 'mascota_repository.dart';
+import 'catalogo_theme.dart';
 
 class MascotaCatalogScreen extends StatefulWidget {
   final VoidCallback? abrirEncuesta;
@@ -56,13 +57,48 @@ class _MascotaCatalogScreenState extends State<MascotaCatalogScreen> {
   Widget build(BuildContext context) {
     final lista = mascotasFiltradas;
     return Scaffold(
-      appBar: AppBar(title: const Text('Huellitas Match')),
+      appBar: AppBar(
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Tu próximo match',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+            ),
+          ],
+        ),
+      ),
       body: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 900),
+          constraints: const BoxConstraints(maxWidth: 520),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 4),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'UN MATCH PARA TODA LA VIDA',
+                      style: const TextStyle(
+                        fontSize: 10,
+                        letterSpacing: 1,
+                        color: CatalogoColors.terracota,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Encuentra una compañía que vaya a tu ritmo.',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: CatalogoColors.secundario,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: TextField(
@@ -70,7 +106,6 @@ class _MascotaCatalogScreenState extends State<MascotaCatalogScreen> {
                   decoration: InputDecoration(
                     hintText: 'Buscar por nombre...',
                     prefixIcon: const Icon(Icons.search),
-                    border: const OutlineInputBorder(),
                     suffixIcon: busqueda.isEmpty
                         ? null
                         : IconButton(
@@ -91,6 +126,15 @@ class _MascotaCatalogScreenState extends State<MascotaCatalogScreen> {
                   spacing: 8,
                   children: ['Todos', 'Perro', 'Gato'].map((opcion) {
                     return ChoiceChip(
+                      showCheckmark: false,
+                      selectedColor: CatalogoColors.suave,
+                      backgroundColor: const Color(0xFFF0ECE6),
+                      side: BorderSide.none,
+                      labelStyle: TextStyle(
+                        color: especie == opcion
+                            ? CatalogoColors.terracota
+                            : CatalogoColors.secundario,
+                      ),
                       label: Text(opcion == 'Todos' ? opcion : '${opcion}s'),
                       selected: especie == opcion,
                       onSelected: (_) => setState(() => especie = opcion),
@@ -100,11 +144,22 @@ class _MascotaCatalogScreenState extends State<MascotaCatalogScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(16),
-                child: Text(
-                  widget.sugerencias.isEmpty
-                      ? 'Conoce a las mascotas'
-                      : 'Sugerencias primero',
-                  style: Theme.of(context).textTheme.titleLarge,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.sugerencias.isEmpty
+                            ? 'Conoce a las mascotas'
+                            : 'Según tus respuestas',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    Text(
+                      '${lista.length} mascotas',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -115,7 +170,7 @@ class _MascotaCatalogScreenState extends State<MascotaCatalogScreen> {
                         ),
                       )
                     : ListView.builder(
-                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 20),
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
                         itemCount: lista.length,
                         itemBuilder: (context, index) {
                           final mascota = lista[index];

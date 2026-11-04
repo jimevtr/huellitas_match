@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'catalogo_theme.dart';
 import 'mascota_catalog_screen.dart';
 
 void main() {
@@ -7,10 +8,7 @@ void main() {
     MaterialApp(
       title: 'Huellitas Match',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF42766B)),
-      ),
+      theme: buildCatalogoTheme(),
       home: const MascotaCatalogScreen(),
     ),
   );
