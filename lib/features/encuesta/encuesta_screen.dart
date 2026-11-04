@@ -22,10 +22,11 @@ class EncuestaScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Center(
               child: Text(
-                encuestaProvider.encuestaCompleta ? '3/3' : '1/3',
+                '${encuestaProvider.preguntasRespondidas}/5',
                 style: const TextStyle(
                   color: Color(0xFFD35400),
                   fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
               ),
             ),
@@ -39,117 +40,96 @@ class EncuestaScreen extends StatelessWidget {
           children: [
             const Text(
               'Conozcamos\ntu rutina',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Unas pistas para encontrar a tu compañero ideal.',
-              style: TextStyle(color: Colors.grey, fontSize: 14),
-            ),
+            const Text('Unas pistas para encontrar a tu compañero ideal.', style: TextStyle(color: Colors.grey, fontSize: 14)),
             const SizedBox(height: 24),
             const Divider(),
             const SizedBox(height: 16),
 
-            // Pregunta 1: Espacio
-            _buildQuestionTitle('01', '¿Cuánto espacio tienes?'),
+            // 1. Espacio
+            const Text(
+              '01. ¿Cuánto espacio tienes?',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+            ),
             const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: _buildOptionButton(
-                    titulo: 'Pequeño',
-                    seleccionado: encuestaProvider.espacio == 'pequeño',
-                    onTap: () => encuestaProvider.setEspacio('pequeño'),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildOptionButton(
-                    titulo: 'Amplio',
-                    seleccionado: encuestaProvider.espacio == 'amplio',
-                    onTap: () => encuestaProvider.setEspacio('amplio'),
-                  ),
-                ),
-              ],
+            _buildThreeOptionsRow(
+              opciones: ['Pequeño', 'Mediano', 'Amplio'],
+              seleccionado: encuestaProvider.espacio,
+              onSelected: (val) => encuestaProvider.setEspacio(val),
             ),
             const SizedBox(height: 24),
 
-            // Pregunta 2: Tiempo para cuidados
-            _buildQuestionTitle('02', '¿Tiempo para cuidados?'),
+            // 2. Tiempo para cuidados
+            const Text(
+              '02. ¿Tiempo para cuidados?',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+            ),
             const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: _buildOptionButton(
-                    titulo: 'Moderado',
-                    seleccionado: encuestaProvider.tiempoCuidados == 'moderado',
-                    onTap: () => encuestaProvider.setTiempoCuidados('moderado'),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildOptionButton(
-                    titulo: 'Alto',
-                    seleccionado: encuestaProvider.tiempoCuidados == 'alto',
-                    onTap: () => encuestaProvider.setTiempoCuidados('alto'),
-                  ),
-                ),
-              ],
+            _buildThreeOptionsRow(
+              opciones: ['Poco', 'Moderado', 'Suficiente'],
+              seleccionado: encuestaProvider.tiempoCuidados,
+              onSelected: (val) => encuestaProvider.setTiempoCuidados(val),
             ),
             const SizedBox(height: 24),
 
-            // Pregunta 3: Nivel de actividad
-            _buildQuestionTitle('03', '¿Tu nivel de actividad?'),
+            // 3. Nivel de actividad
+            const Text(
+              '03. ¿Tu nivel de actividad?',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+            ),
             const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: _buildOptionButton(
-                    titulo: 'Tranquila',
-                    seleccionado: encuestaProvider.actividad == 'tranquila',
-                    onTap: () => encuestaProvider.setActividad('tranquila'),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildOptionButton(
-                    titulo: 'Activa',
-                    seleccionado: encuestaProvider.actividad == 'activa',
-                    onTap: () => encuestaProvider.setActividad('activa'),
-                  ),
-                ),
-              ],
+            _buildThreeOptionsRow(
+              opciones: ['Tranquila', 'Moderada', 'Activa'],
+              seleccionado: encuestaProvider.actividad,
+              onSelected: (val) => encuestaProvider.setActividad(val),
+            ),
+            const SizedBox(height: 24),
+
+            // 4. Experiencia previa
+            const Text(
+              '04. ¿Tienes experiencia previa?',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+            ),
+            const SizedBox(height: 12),
+            _buildThreeOptionsRow(
+              opciones: ['Ninguna', 'Básica', 'Mucha'],
+              seleccionado: encuestaProvider.experiencia,
+              onSelected: (val) => encuestaProvider.setExperiencia(val),
+            ),
+            const SizedBox(height: 24),
+
+            // 5. Tamaño de mascota preferido (reemplaza la pregunta repetida de espacio/vivienda)
+            const Text(
+              '05. ¿Qué tamaño de mascota prefieres?',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+            ),
+            const SizedBox(height: 12),
+            _buildThreeOptionsRow(
+              opciones: ['Pequeño', 'Mediano', 'Grande'],
+              seleccionado: encuestaProvider.tamanoPreferido,
+              onSelected: (val) => encuestaProvider.setTamanoPreferido(val),
             ),
             const SizedBox(height: 40),
 
-            // Botón Ver sugerencias con validación
             BotonPrincipal(
               texto: 'Ver sugerencias',
-              icono: Icons.arrow_forward,
               onPressed: () {
                 if (!encuestaProvider.encuestaCompleta) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Por favor responde todas las preguntas para continuar.'),
+                      content: Text('Por favor responde las 5 preguntas para continuar.'),
                       backgroundColor: Colors.redAccent,
                     ),
                   );
                   return;
                 }
-                // Navegar al catálogo / sugerencias (integrado con Santiago)
-                // Navigator.pushNamed(context, '/catalogo');
               },
             ),
             const SizedBox(height: 16),
             const Center(
-              child: Text(
-                '✨ Cada rutina tiene una compañía especial',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
+              child: Text('✨ Cada rutina tiene una compañía especial', style: TextStyle(color: Colors.grey, fontSize: 12)),
             ),
           ],
         ),
@@ -157,58 +137,45 @@ class EncuestaScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuestionTitle(String numero, String pregunta) {
-    return Row(
-      children: [
-        Text(
-          numero,
-          style: const TextStyle(
-            color: Color(0xFFD35400),
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          ),
-        ),
-        const SizedBox(width: 8),
-        Text(
-          pregunta,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: Colors.black87,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildOptionButton({
-    required String titulo,
-    required bool seleccionado,
-    required VoidCallback onTap,
+  Widget _buildThreeOptionsRow({
+    required List<String> opciones,
+    required String? seleccionado,
+    required Function(String) onSelected,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-        decoration: BoxDecoration(
-          color: seleccionado ? const Color(0xFFFCE4EC) : Colors.white,
-          border: Border.all(
-            color: seleccionado ? const Color(0xFFD35400) : Colors.grey.shade300,
-            width: seleccionado ? 2 : 1,
-          ),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Center(
-          child: Text(
-            titulo,
-            style: TextStyle(
-              color: seleccionado ? const Color(0xFFD35400) : Colors.black87,
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
+    return Row(
+      children: opciones.map((opcion) {
+        bool isSelected = seleccionado == opcion.toLowerCase();
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: GestureDetector(
+              onTap: () => onSelected(opcion.toLowerCase()),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                decoration: BoxDecoration(
+                  color: isSelected ? const Color(0xFFFCE4EC) : Colors.white,
+                  border: Border.all(
+                    color: isSelected ? const Color(0xFFD35400) : Colors.grey.shade300,
+                    width: isSelected ? 2 : 1,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    opcion,
+                    style: TextStyle(
+                      color: isSelected ? const Color(0xFFD35400) : Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }).toList(),
     );
   }
 }
