@@ -13,9 +13,9 @@ analyzer:
   exclude:
     - build/**
     - android/**
-    - ios/**
     - web/**
     - windows/**
+    - ios/**
     - macos/**
     - linux/**
 
