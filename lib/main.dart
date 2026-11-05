@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:huellitas_match/features/bienvenida/bienvenida_screen.dart';
+import 'package:huellitas_match/features/bienvenida/splash_screen.dart';
 import 'package:huellitas_match/features/encuesta/encuesta_provider.dart';
 import 'package:huellitas_match/features/favoritos/favoritos_provider.dart';
 import 'package:huellitas_match/features/catalogo/catalogo_integrado_screen.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const BienvenidaScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

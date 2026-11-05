@@ -13,6 +13,8 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
     await tester.pumpWidget(const MyApp());
+    expect(find.text('Huellitas Match'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 2));
     await tester.pumpAndSettle();
 
     Future<void> pulsar(String texto) async {
@@ -71,6 +73,8 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(const MyApp());
+    expect(find.text('Huellitas Match'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 2));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.text('Explorar catálogo'));
     await tester.tap(find.text('Explorar catálogo'));
